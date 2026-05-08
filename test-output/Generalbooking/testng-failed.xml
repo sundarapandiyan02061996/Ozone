@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Generalbooking]">
+  <test name="SmokeTest(failed)">
+    <classes>
+      <class name="org.FlightBookings.DomesticOnewaybyCA">
+        <methods>
+          <include name="beforetest"/>
+          <include name="Aftertest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.DomesticOnewaybyCA -->
+      <class name="org.FlightBookings.DomesticRoundTripbyCA">
+        <methods>
+          <include name="beforetest"/>
+          <include name="AirRTdomesticbooking"/>
+          <include name="Aftertest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.DomesticRoundTripbyCA -->
+      <class name="org.FlightBookings.InternationalRoundTripCU">
+        <methods>
+          <include name="Aftertest"/>
+          <include name="AirRTInternationalbooking"/>
+          <include name="beforetest"/>
+          <include name="ApprovetheRequest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.InternationalRoundTripCU -->
+      <class name="org.FlightBookings.InternationalOnewaybyCA">
+        <methods>
+          <include name="beforetest"/>
+          <include name="AirOWInternationalbooking"/>
+          <include name="Aftertest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.InternationalOnewaybyCA -->
+      <class name="org.FlightBookings.DomesticOnewaybyCU">
+        <methods>
+          <include name="beforetest"/>
+          <include name="Aftertest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.DomesticOnewaybyCU -->
+      <class name="org.FlightBookings.DomesticRoundTripbyCU">
+        <methods>
+          <include name="beforetest"/>
+          <include name="Aftertest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.DomesticRoundTripbyCU -->
+      <class name="org.FlightBookings.InternationalOnewaybyCU">
+        <methods>
+          <include name="Aftertest"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.InternationalOnewaybyCU -->
+      <class name="org.FlightBookings.InternationalRoundTripbyCA">
+        <methods>
+          <include name="Aftertest"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- org.FlightBookings.InternationalRoundTripbyCA -->
+    </classes>
+  </test> <!-- SmokeTest(failed) -->
+</suite> <!-- Failed suite [Generalbooking] -->

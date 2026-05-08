@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="94924" started-at="2026-05-08T11:22:56Z" finished-at="2026-05-08T11:24:31Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="94924" started-at="2026-05-08T11:22:56Z" finished-at="2026-05-08T11:24:31Z">
+      <class name="org.VisaBooking.VisabookingbyCU">
+        <test-method status="PASS" signature="beforetest()[pri:0, instance:org.VisaBooking.VisabookingbyCU@7791a895]" name="beforetest" is-config="true" duration-ms="6959" started-at="2026-05-08T16:52:56Z" finished-at="2026-05-08T16:53:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetest -->
+        <test-method status="PASS" signature="visabookingCU()[pri:1, instance:org.VisaBooking.VisabookingbyCU@7791a895]" name="visabookingCU" duration-ms="50020" started-at="2026-05-08T16:53:03Z" finished-at="2026-05-08T16:53:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- visabookingCU -->
+        <test-method status="PASS" signature="Aftertest(org.testng.ITestResult)[pri:0, instance:org.VisaBooking.VisabookingbyCU@7791a895]" name="Aftertest" is-config="true" duration-ms="230" started-at="2026-05-08T16:53:53Z" finished-at="2026-05-08T16:53:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=visabookingCU status=SUCCESS method=VisabookingbyCU.visabookingCU()[pri:1, instance:org.VisaBooking.VisabookingbyCU@7791a895] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Aftertest -->
+        <test-method status="PASS" signature="beforetest()[pri:0, instance:org.VisaBooking.VisabookingbyCU@7791a895]" name="beforetest" is-config="true" duration-ms="4105" started-at="2026-05-08T16:53:54Z" finished-at="2026-05-08T16:53:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetest -->
+        <test-method status="PASS" signature="ApprovetheBooking()[pri:2, instance:org.VisaBooking.VisabookingbyCU@7791a895]" name="ApprovetheBooking" duration-ms="33364" started-at="2026-05-08T16:53:58Z" finished-at="2026-05-08T16:54:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApprovetheBooking -->
+        <test-method status="PASS" signature="Aftertest(org.testng.ITestResult)[pri:0, instance:org.VisaBooking.VisabookingbyCU@7791a895]" name="Aftertest" is-config="true" duration-ms="200" started-at="2026-05-08T16:54:31Z" finished-at="2026-05-08T16:54:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=ApprovetheBooking status=SUCCESS method=VisabookingbyCU.ApprovetheBooking()[pri:2, instance:org.VisaBooking.VisabookingbyCU@7791a895] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Aftertest -->
+      </class> <!-- org.VisaBooking.VisabookingbyCU -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
