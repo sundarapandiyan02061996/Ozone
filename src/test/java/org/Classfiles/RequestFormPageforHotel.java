@@ -337,5 +337,67 @@ public class RequestFormPageforHotel extends BaseClass {
 	}
 	
 	
+	public void CobinationHotel(int rows) throws Throwable
+	{
+		implicitwait();
+		WebDriverWait wait1 = new WebDriverWait(driver, 20);
+		Thread.sleep(7000);
+		SendKeyy(Hotellocation, getdataxlsheet(0, rows, 1));
+		Thread.sleep(4000);
+		//List<WebElement> suggestions = wait1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul[contains(@class,'ui-autocomplete')]//li")));
+		Down();
+		Enter();
+		//javascriptclick(selectsectororigin);
+		javascriptclick(Checkin);
+		Thread.sleep(1000);
+		datepicks(getdataxlsheet(0, rows, 2));
+		Thread.sleep(1000);
+//		javascriptclick(Checkout);
+//		Thread.sleep(1000);
+//		datepicks(getdataxlsheet(0, 17, 3));
+//		Selectdropdownbyvisibletext(Adultcoutn, getdataxlsheet(0, rows, 4));
+		int row = 1;
+		List<WebElement> Totalemployees = driver.findElements(By.xpath("//span[contains(text(),'Passenger information')]"));
+		for(int i=0;i<Totalemployees.size();i++)
+		{
+			WebElement Passengerinformation = driver.findElement(By.xpath("(//input[contains(@id,'employee_code')])["+(i+1)+"]"));
+			String type = Passengerinformation.getText().trim();
+			if(type.contains("GUEST"))	
+			{
+		WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
+		Thread.sleep(1000);
+		Selectdropdownbyvisibletext(Roomno, "1");
+		WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])["+(2 *( i + 1))+"]"));
+		SendKeyy(Nationality, "IND");
+		Thread.sleep(2000);
+		Down();
+		Enter();
+		}
+			else {
+				
+				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 * i + 1)+"]"));
+				Thread.sleep(1000);
+				Selectdropdownbyvisibletext(Roomno, "1");
+				WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])["+(2 * i + 1)+"]"));
+				SendKeyy(Nationality, "IND");
+				Thread.sleep(2000);
+				Down();
+				Enter();
+			}
+			row++;
+		}	
+		Thread.sleep(1000);
+		Clicks(Proceed);	
+		try
+		{
+			WebElement yes = driver.findElement(By.xpath("(//input[@value='Yes'])[2]"));
+			Clicks(yes);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	
 
 }

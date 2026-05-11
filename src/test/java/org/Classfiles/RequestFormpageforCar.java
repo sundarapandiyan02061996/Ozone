@@ -222,4 +222,37 @@ public class RequestFormpageforCar extends BaseClass {
 		}
 	}
 
+	
+	public void CombinationCarRequestformCA(int rows) throws Throwable
+	{
+		implicitwait();
+		//WebDriverWait wait1 = new WebDriverWait(driver, 20);
+		SendKeyy(Locationcity, getdataxlsheet(0, rows, 1));
+		Thread.sleep(1000);
+		javascriptclick(Pickupdate);
+		Thread.sleep(1000);
+		datepicks(getdataxlsheet(0, rows, 2));
+		Thread.sleep(1000);
+		Selectdropdownbyindex(Pickuptime, 5);
+		SendKeyy(Departuredetails, getdataxlsheet(0, rows, 3));
+		SendKeyy(Pickupdetails, getdataxlsheet(0, rows, 4));
+			try
+			{
+				SendKeyy(GuestAge, "25");
+			}
+			catch (Exception e) {
+				SendKeyy(Age, "26");
+			}
+		Thread.sleep(1000);
+		Clicks(Proceed);	
+		try
+		{
+			WebElement yes = driver.findElement(By.xpath("(//input[@value='Yes'])[2]"));
+			Clicks(yes);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
 }

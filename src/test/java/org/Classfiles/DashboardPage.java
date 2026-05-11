@@ -33,6 +33,9 @@ public class DashboardPage extends BaseClass {
 	@FindBy(xpath="(//ul//li//a[contains(text(),' Visa')])[1]")
 	WebElement Visabtn;
 	
+	@FindBy(xpath="(//ul//li//a[contains(text(),'Insurance')])[1]")
+	WebElement Insurancebtn;
+	
 	@FindBy(xpath="//a[@title=' Travel Approval']")
 	WebElement TestApprovalbtn;
 	
@@ -50,6 +53,16 @@ public class DashboardPage extends BaseClass {
 	
 	
 	
+	public WebElement getVisabtn() {
+		return Visabtn;
+	}
+
+
+	public WebElement getInsurancebtn() {
+		return Insurancebtn;
+	}
+
+
 	public WebElement getCarbtn() {
 		return Carbtn;
 	}
@@ -173,10 +186,21 @@ public class DashboardPage extends BaseClass {
 		Thread.sleep(2000);
 		javascriptclick(NewTravelRequest);
 		Thread.sleep(2000);
-		javascriptclick(Visabtn);
-		
+		javascriptclick(Visabtn);	
 	}
 	
+	public void SelectInsurance() throws Throwable
+	{
+		implicitwait();
+		Thread.sleep(1000);
+		Explictwait(TravelRequestbtn);
+		Thread.sleep(1000);
+		javascriptclick(TravelRequestbtn);
+		Thread.sleep(2000);
+		javascriptclick(NewTravelRequest);
+		Thread.sleep(2000);
+		javascriptclick(Insurancebtn);	
+	}
 	
 	
 	

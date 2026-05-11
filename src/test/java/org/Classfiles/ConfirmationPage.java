@@ -69,5 +69,29 @@ public class ConfirmationPage extends BaseClass {
 		System.out.println("The Package ID " + Package);
 		excellwrite(0, row, 3, Package);
 	}
+	
+	public void InsurancebookingGetdetails(int row) throws Throwable
+	{
+		WebDriverWait w = new WebDriverWait(driver, 40);
+		WebElement OrderID = w.until(
+		        ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'insurance-order-id')]")));
+		String orderID = OrderID.getText().trim();
+		System.out.println(orderID);
+		excellwrite(0, row, 2, orderID);
+		String Package = PackageID.getText().trim();
+		System.out.println("The Package ID " + Package);
+		excellwrite(0, row, 3, Package);
+	}
+	
+	public void Combinationdetails(int row) throws Throwable
+	{
+		WebDriverWait w = new WebDriverWait(driver, 40);
+		WebElement PackageID = w.until(
+		        ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class,'package-id')]")));
+		String Package = PackageID.getText().trim();
+		System.out.println("The Package ID " + Package);
+		excellwrite(0, row, 3, Package);
+	}
+
 
 }

@@ -418,5 +418,97 @@ public class RequestFormPageforVisa extends BaseClass {
 		}
 }
 	
+	
+	public void CombinationVisaRequestFormfillingCA(int rows ) throws Throwable
+	{
+		
+		implicitwait();
+		WebDriverWait wait1 = new WebDriverWait(driver, 20);
+		Thread.sleep(2000);
+		SendKeyy(Country, getdataxlsheet(0, rows, 1));
+		Thread.sleep(2000);
+		//List<WebElement> suggestions = wait1.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//ul[contains(@class,'ui-autocomplete')]//li")));
+		Thread.sleep(3000);
+		Down();
+		Enter();
+		Selectdropdownbyvisibletext(Visatype, getdataxlsheet(0, rows, 2));
+		Selectdropdownbyvisibletext(Journytype, getdataxlsheet(0, rows, 3));
+		//Selectdropdownbyvisibletext(NoofPassenger, getdataxlsheet(0, rows, 4));
+		javascriptclick(OnwardDate);
+		Thread.sleep(1000);
+		datepicks(getdataxlsheet(0, rows, 5));
+		Thread.sleep(1000);
+		javascriptclick(ReturnDate);
+		Thread.sleep(1000);
+		datepicks(getdataxlsheet(0, rows, 6));
+		Thread.sleep(1000);
+		Selectdropdownbyvisibletext(Billtoadress, getdataxlsheet(0, rows, 8));
+		List<WebElement> TotalPassports = driver.findElements(By.xpath("//div[contains(@class,'passport-form row')]"));
+		int Noofadults = TotalPassports.size();
+		System.out.println("Total passpots are "+Noofadults );
+		List<WebElement> PassportNo = driver.findElements(By.xpath("//input[@placeholder='Passport number']"));
+		List<WebElement> Nationality = driver.findElements(By.xpath("//input[@placeholder='Nationality']"));
+		List<WebElement> Placeofissues = driver.findElements(By.xpath("//input[@placeholder='Place of issue']"));
+		List<WebElement> DateofBirthCalenders = driver.findElements(By.xpath("//input[contains(@id,'dateOfBirth')]"));
+		List<WebElement> DateofIssueCalenders = driver.findElements(By.xpath("//input[contains(@id,'dateOfIssue')]"));
+		List<WebElement> DateofExpiryCalenders = driver.findElements(By.xpath("//input[contains(@id,'expiryDate')]"));
+		List<WebElement> Address = driver.findElements(By.xpath("//textarea[contains(@id,'address')]"));	
+		int sheetnum = 1;
+		int rownumber = 15;
+		for(int i=0; i<Noofadults;i++)
+		{
+//			System.out.println("The i value is "+ i);
+			String value = PassportNo.get(i).getAttribute("value");
+			if(value.isEmpty() || value == null)
+			{
+			SendKeyy(PassportNo.get(i), getdataxlsheet(sheetnum, rownumber, 2));
+			SendKeyy(Placeofissues.get(i), getdataxlsheet(sheetnum, rownumber, 4));
+			Thread.sleep(2000);
+			Down();
+			Enter();
+			Thread.sleep(1000);
+			SendKeyy(Nationality.get(i), getdataxlsheet(sheetnum, rownumber, 3));
+			Thread.sleep(2000);
+			Down();
+			Enter();
+			javascriptclick(DateofBirthCalenders.get(i));
+			WebElement year = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+			Selectdropdownbyindex(year, i);
+			WebElement month = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+			Selectdropdownbyindex(month, i);
+			WebElement SelectDate = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
+			javascriptclick(SelectDate);
+			Thread.sleep(1000);
+			javascriptclick(DateofIssueCalenders.get(i));
+			WebElement year1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+			Selectdropdownbyindex(year1, 50);
+			WebElement month1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+			Selectdropdownbyindex(month1, i);
+			WebElement SelectDate1 = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
+			javascriptclick(SelectDate1);
+			Thread.sleep(1000);
+			javascriptclick(DateofExpiryCalenders.get(i));
+			Thread.sleep(500);
+			javascriptclick(DateofExpiryCalenders.get(i));
+			dateselect("50");
+			Thread.sleep(1000);
+			SendKeyy(Address.get(i), getdataxlsheet(sheetnum, rownumber, 5));
+			rownumber++;
+			}
+			else
+			{
+				System.out.println("Details are already given");
+				}
+		}		
+		Clicks(Submitbtn);
+		try
+		{
+			WebElement yes = driver.findElement(By.xpath("(//input[@value='Yes'])[2]"));
+			Clicks(yes);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 
 }

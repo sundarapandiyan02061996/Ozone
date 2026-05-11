@@ -31,8 +31,16 @@ public class PriceSummaryPage extends BaseClass {
 	@FindBy(xpath="//button[contains(text(),'Approve')]")
 	WebElement Approvebtn;
 	
+	@FindBy(xpath="//button[contains(text(),'Pay to submit')]")
+	WebElement Paytosubmit;
 	
 	
+	
+	
+	public WebElement getPaytosubmit() {
+		return Paytosubmit;
+	}
+
 	public WebElement getApprovebtn() {
 		return Approvebtn;
 	}
@@ -293,6 +301,23 @@ public class PriceSummaryPage extends BaseClass {
 		WebElement Yes = driver.findElement(By.xpath("(//input[@value='Yes'])[2]"));
 		Clicks(Yes);
 	}
+	
+	
+	public void Combinationpayment()
+	{
+		implicitwait();
+		WebDriverWait w = new WebDriverWait(driver, 150);
+		w.until(ExpectedConditions.elementToBeClickable(ProceedtoPay));
+		Clicks(ProceedtoPay);
+		try
+		{
+		Thread.sleep(1000);
+		Clicks(Yesbtn);	
+		}
+		catch (Exception e) {
+		}
+	}
+	
 	
 
 }
