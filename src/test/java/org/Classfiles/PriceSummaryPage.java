@@ -92,7 +92,6 @@ public class PriceSummaryPage extends BaseClass {
 		List<WebElement> Pincodes = driver.findElements(By.xpath("//input[@placeholder='Pincode']"));
 		List<WebElement> Genders = driver.findElements(By.xpath("//select[contains(@id,'gender')]"));
 		List<WebElement> Submitbtn = driver.findElements(By.xpath("//a[@title='Submit']"));
-		
 		int sheetnum = 1;
 		int rownumber = 15;
 		int temp =3; // Unable to take proper xpath of Expiry date calender field due to UI issue. once the issue has fixed we should change the xpath accodingly
@@ -151,11 +150,10 @@ public class PriceSummaryPage extends BaseClass {
 			}
 			else
 			{
-				System.out.println("Details are already given");
+				//System.out.println("Details are already given");
+				Clicks(ProceedtoPay);
 			}
 		}
-		
-		
 		try
 		{
 			WebElement Yes = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@value='Yes'])[3]")));
@@ -171,7 +169,6 @@ public class PriceSummaryPage extends BaseClass {
 				System.out.println("Nothing");
 			}
 		}
-
 	}
 	
 	

@@ -13,25 +13,25 @@ import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RequestFormPageforHotel extends BaseClass {
-	
+
 	public RequestFormPageforHotel()
 	{
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+
+
 	@FindBy(xpath="//input[@placeholder='Select location']")
 	WebElement Hotellocation;
-	
+
 	@FindBy(xpath="//input[@placeholder='Check-in']")
 	WebElement Checkin;
-	
+
 	@FindBy(xpath="//input[@placeholder='Check-out']")
 	WebElement Checkout;
-	
+
 	@FindBy(xpath="//select[@id='adultCounts1']")
 	WebElement Adultcoutn;
-	
+
 	@FindBy(xpath = "(//p[contains(@id,'Employee0')])")
 	WebElement EmployeeRadio;
 
@@ -61,17 +61,17 @@ public class RequestFormPageforHotel extends BaseClass {
 
 	@FindBy(xpath = "(//select[@id='purpose_of_travel'])[1]")
 	WebElement PurposeofTravel;
-	
+
 	@FindBy(xpath = "(//select[@id='billto_address'])[1]")
 	WebElement Billtoadress;
-	
+
 	@FindBy(xpath = "(//select[@id='billable'])")
 	WebElement Billable;
-	
+
 	@FindBy(xpath = "(//button[@id='proceed'])[1]")
 	WebElement Proceed;
-	
-	
+
+
 
 	public WebElement getCheckin() {
 		return Checkin;
@@ -140,8 +140,8 @@ public class RequestFormPageforHotel extends BaseClass {
 	public WebElement getProceed() {
 		return Proceed;
 	}
-	
-	
+
+
 	public void HotelRequestform(int rows) throws Throwable
 	{
 		implicitwait();
@@ -156,10 +156,11 @@ public class RequestFormPageforHotel extends BaseClass {
 		Thread.sleep(1000);
 		datepicks(getdataxlsheet(0, rows, 2));
 		Thread.sleep(1000);
-//		javascriptclick(Checkout);
-//		Thread.sleep(1000);
-//		datepicks(getdataxlsheet(0, 17, 3));
+		//		javascriptclick(Checkout);
+		//		Thread.sleep(1000);
+		//		datepicks(getdataxlsheet(0, 17, 3));
 		Selectdropdownbyvisibletext(Adultcoutn, getdataxlsheet(0, rows, 4));
+		Thread.sleep(3000);
 		int row = 1;
 		List<WebElement> Totalemployees = driver.findElements(By.xpath("//span[contains(text(),'Passenger information')]"));
 		for(int i=0;i<Totalemployees.size();i++)
@@ -170,31 +171,53 @@ public class RequestFormPageforHotel extends BaseClass {
 			System.out.println(type);
 			if(type.equalsIgnoreCase(getdataxlsheet(1, row, 0)))	
 			{
-		javascriptclick(Passengerinformation);
-		Thread.sleep(500);
-		WebElement Title = driver.findElement(By.xpath("(//select[contains(@id,'titles')])["+(2 *( i + 1))+"]"));
-		Thread.sleep(1000);
-		javascriptclick(Title);
-		Selectdropdownbyvisibletext(Title, getdataxlsheet(1, row, 1));
-		WebElement Passengerfirstname = driver.findElement(By.xpath("(//input[contains(@id,'first_name')])["+(2 *( i + 1))+"]"));
-		SendKeyy(Passengerfirstname, getdataxlsheet(1, row, 2));
-		WebElement Passengerlastname = driver.findElement(By.xpath("(//input[contains(@id,'last_name')])["+(2 *( i + 1))+"]"));
-		SendKeyy(Passengerlastname, getdataxlsheet(1, row, 3));
-		WebElement PassengerMobileCode = driver.findElement(By.xpath("(//select[contains(@id,'mobile_code')])["+(i+1)+"]"));
-		Clicks(PassengerMobileCode);
-		Selectdropdownbyvisibletext(PassengerMobileCode, getdataxlsheet(1, row, 4));
-		WebElement PassengerMobilenumber = driver.findElement(By.xpath("(//input[contains(@id,'mobile_number')])["+(2 *( i + 1))+"]"));
-		SendKeyy(PassengerMobilenumber, getdataxlsheet(1, row, 5));
-		WebElement PassengerEmailid = driver.findElement(By.xpath("(//input[contains(@id,'email')])["+(2 *( i + 1))+"]"));
-		SendKeyy(PassengerEmailid, getdataxlsheet(1, row, 6));
-		WebElement PassengerProjectCode = driver.findElement(By.xpath("(//input[contains(@id,'project_code')])["+(2 *( i + 1))+"]"));
-		SendKeyy(PassengerProjectCode, getdataxlsheet(1, row, 7));
-//		WebElement AdharCard = driver.findElement(By.xpath("//input[@placeholder='Enter aadhar number']["+(2 *( i + 1))+"]"));
-//		SendKeyy(AdharCard, "123456789");
-		WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
-		Thread.sleep(1000);
-		Selectdropdownbyvisibletext(Roomno, "1");
-		}
+				javascriptclick(Passengerinformation);
+				Thread.sleep(500);
+				WebElement Title = driver.findElement(By.xpath("(//select[contains(@id,'titles')])["+(2 *( i + 1))+"]"));
+				Thread.sleep(1000);
+				javascriptclick(Title);
+				Selectdropdownbyvisibletext(Title, getdataxlsheet(1, row, 1));
+				WebElement Passengerfirstname = driver.findElement(By.xpath("(//input[contains(@id,'first_name')])["+(2 *( i + 1))+"]"));
+				SendKeyy(Passengerfirstname, getdataxlsheet(1, row, 2));
+				WebElement Passengerlastname = driver.findElement(By.xpath("(//input[contains(@id,'last_name')])["+(2 *( i + 1))+"]"));
+				SendKeyy(Passengerlastname, getdataxlsheet(1, row, 3));
+				WebElement PassengerMobileCode = driver.findElement(By.xpath("(//select[contains(@id,'mobile_code')])["+(i+1)+"]"));
+				Clicks(PassengerMobileCode);
+				Selectdropdownbyvisibletext(PassengerMobileCode, getdataxlsheet(1, row, 4));
+				WebElement PassengerMobilenumber = driver.findElement(By.xpath("(//input[contains(@id,'mobile_number')])["+(2 *( i + 1))+"]"));
+				SendKeyy(PassengerMobilenumber, getdataxlsheet(1, row, 5));
+				WebElement PassengerEmailid = driver.findElement(By.xpath("(//input[contains(@id,'email')])["+(2 *( i + 1))+"]"));
+				SendKeyy(PassengerEmailid, getdataxlsheet(1, row, 6));
+				WebElement PassengerProjectCode = driver.findElement(By.xpath("(//input[contains(@id,'project_code')])["+(2 *( i + 1))+"]"));
+				SendKeyy(PassengerProjectCode, getdataxlsheet(1, row, 7));
+				//		WebElement AdharCard = driver.findElement(By.xpath("//input[@placeholder='Enter aadhar number']["+(2 *( i + 1))+"]"));
+				//		SendKeyy(AdharCard, "123456789");
+				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
+				Thread.sleep(1000);
+				Selectdropdownbyvisibletext(Roomno, "1");
+				try
+				{
+					WebElement Nationlaties = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[2]"));
+					SendKeyy(Nationlaties, "IND");
+					Thread.sleep(2000);
+					Down();
+					Enter();	
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
+				try
+				{
+					WebElement Nationlaties = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[4]"));
+					SendKeyy(Nationlaties, "IND");
+					Thread.sleep(2000);
+					Down();
+					Enter();	
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
 			else
 			{
 
@@ -202,14 +225,14 @@ public class RequestFormPageforHotel extends BaseClass {
 				String value = EmployeeCode1.getAttribute("value");
 				if(value.isEmpty() || value == null)
 				{
-				WebElement EmployeeCode = driver.findElement(By.xpath("(//input[contains(@id,'employee_code')])[" + (2 * i + 1) + "]"));
-				SendKeyy(EmployeeCode, getdataxlsheet(1, row, 8));
-				WebDriverWait wait = new WebDriverWait(driver, 10);
-				WebElement suggestion = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(text(),'"+getdataxlsheet(1, row, 9)+"')]")));
-				Clicks(suggestion);
-				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+ (2 * i + 1) +"]"));
-				Thread.sleep(1000);
-				Selectdropdownbyvisibletext(Roomno, "1");
+					WebElement EmployeeCode = driver.findElement(By.xpath("(//input[contains(@id,'employee_code')])[" + (2 * i + 1) + "]"));
+					SendKeyy(EmployeeCode, getdataxlsheet(1, row, 8));
+					WebDriverWait wait = new WebDriverWait(driver, 10);
+					WebElement suggestion = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(text(),'"+getdataxlsheet(1, row, 9)+"')]")));
+					Clicks(suggestion);
+					WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+ (2 * i + 1) +"]"));
+					Thread.sleep(1000);
+					Selectdropdownbyvisibletext(Roomno, "1");
 				}
 			}
 			row++;
@@ -217,23 +240,36 @@ public class RequestFormPageforHotel extends BaseClass {
 		Thread.sleep(1000);
 		try
 		{
-		WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[2]"));
-		SendKeyy(Nationality, "IND");
-		Thread.sleep(2000);
-		Down();
-		Enter();
-		}
-		catch (Exception e) {
-			WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[1]"));
-			SendKeyy(Nationality, "IND");
+			WebElement Nationlaties = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[1]"));
+			SendKeyy(Nationlaties, "IND");
 			Thread.sleep(2000);
 			Down();
-			Enter();
+			Enter();	
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		try
+		{
+			WebElement Nationlaties = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[3]"));
+			SendKeyy(Nationlaties, "IND");
+			Thread.sleep(2000);
+			Down();
+			Enter();	
+		}
+		catch (Exception e) {
+			// TODO: handle exception
 		}
 		Selectdropdownbyvisibletext(PurposeofTravel, getdataxlsheet(0, rows, 5));
-		Thread.sleep(1000);
+		Thread.sleep(2000);
+		try
+		{
 		Selectdropdownbyvisibletext(Billable, getdataxlsheet(0, rows, 6));
 		Thread.sleep(1000);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 		Selectdropdownbyvisibletext(Billtoadress, getdataxlsheet(0, rows, 7));
 		Clicks(Proceed);	
 		try
@@ -245,7 +281,7 @@ public class RequestFormPageforHotel extends BaseClass {
 			// TODO: handle exception
 		}
 	}
-	
+
 	public void HotelRequestformforCUuser(int rows) throws Throwable
 	{
 		implicitwait();
@@ -259,9 +295,9 @@ public class RequestFormPageforHotel extends BaseClass {
 		Thread.sleep(1000);
 		datepicks(getdataxlsheet(0, rows, 2));
 		Thread.sleep(1000);
-//		javascriptclick(Checkout);
-//		Thread.sleep(1000);
-//		datepicks(getdataxlsheet(0, 17, 3));
+		//		javascriptclick(Checkout);
+		//		Thread.sleep(1000);
+		//		datepicks(getdataxlsheet(0, 17, 3));
 		Selectdropdownbyvisibletext(Adultcoutn, getdataxlsheet(0, rows, 4));
 		int row = 1;
 		List<WebElement> Totalemployees = wait1.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//span[contains(text(),'Passenger information')]"), 1));
@@ -273,31 +309,31 @@ public class RequestFormPageforHotel extends BaseClass {
 			System.out.println(type);
 			if(type.equalsIgnoreCase(getdataxlsheet(1, row, 0)))	
 			{
-		javascriptclick(Passengerinformation);
-		Thread.sleep(500);
-		WebElement Title = driver.findElement(By.xpath("(//select[contains(@id,'titles')])["+(2 *( i + 1))+"]"));
-		Thread.sleep(1000);
-		javascriptclick(Title);
-		Selectdropdownbyvisibletext(Title, getdataxlsheet(1, row, 1));
-		WebElement Passengerfirstname = driver.findElement(By.xpath("(//input[contains(@id,'first_name')])["+(2 *( i + 1))+"]"));
-		SendKeyy(Passengerfirstname, getdataxlsheet(1, row, 2));
-		WebElement Passengerlastname = driver.findElement(By.xpath("(//input[contains(@id,'last_name')])["+(2 *( i + 1))+"]"));
-		SendKeyy(Passengerlastname, getdataxlsheet(1, row, 3));
-		WebElement PassengerMobileCode = driver.findElement(By.xpath("(//select[contains(@id,'mobile_code')])["+(i+1)+"]"));
-		Clicks(PassengerMobileCode);
-		Selectdropdownbyvisibletext(PassengerMobileCode, getdataxlsheet(1, row, 4));
-		WebElement PassengerMobilenumber = driver.findElement(By.xpath("(//input[contains(@id,'mobile_number')])["+(2 *( i + 1))+"]"));
-		SendKeyy(PassengerMobilenumber, getdataxlsheet(1, row, 5));
-		WebElement PassengerEmailid = driver.findElement(By.xpath("(//input[contains(@id,'email')])["+(2 *( i + 1))+"]"));
-		SendKeyy(PassengerEmailid, getdataxlsheet(1, row, 6));
-		WebElement PassengerProjectCode = driver.findElement(By.xpath("(//input[contains(@id,'project_code')])["+(2 *( i + 1))+"]"));
-		SendKeyy(PassengerProjectCode, getdataxlsheet(1, row, 7));
-//		WebElement AdharCard = driver.findElement(By.xpath("//input[@placeholder='Enter aadhar number']["+(2 *( i + 1))+"]"));
-//		SendKeyy(AdharCard, "123456789");
-		WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
-		Thread.sleep(1000);
-		Selectdropdownbyvisibletext(Roomno, "1");
-		}
+				javascriptclick(Passengerinformation);
+				Thread.sleep(500);
+				WebElement Title = driver.findElement(By.xpath("(//select[contains(@id,'titles')])["+(2 *( i + 1))+"]"));
+				Thread.sleep(1000);
+				javascriptclick(Title);
+				Selectdropdownbyvisibletext(Title, getdataxlsheet(1, row, 1));
+				WebElement Passengerfirstname = driver.findElement(By.xpath("(//input[contains(@id,'first_name')])["+(2 *( i + 1))+"]"));
+				SendKeyy(Passengerfirstname, getdataxlsheet(1, row, 2));
+				WebElement Passengerlastname = driver.findElement(By.xpath("(//input[contains(@id,'last_name')])["+(2 *( i + 1))+"]"));
+				SendKeyy(Passengerlastname, getdataxlsheet(1, row, 3));
+				WebElement PassengerMobileCode = driver.findElement(By.xpath("(//select[contains(@id,'mobile_code')])["+(i+1)+"]"));
+				Clicks(PassengerMobileCode);
+				Selectdropdownbyvisibletext(PassengerMobileCode, getdataxlsheet(1, row, 4));
+				WebElement PassengerMobilenumber = driver.findElement(By.xpath("(//input[contains(@id,'mobile_number')])["+(2 *( i + 1))+"]"));
+				SendKeyy(PassengerMobilenumber, getdataxlsheet(1, row, 5));
+				WebElement PassengerEmailid = driver.findElement(By.xpath("(//input[contains(@id,'email')])["+(2 *( i + 1))+"]"));
+				SendKeyy(PassengerEmailid, getdataxlsheet(1, row, 6));
+				WebElement PassengerProjectCode = driver.findElement(By.xpath("(//input[contains(@id,'project_code')])["+(2 *( i + 1))+"]"));
+				SendKeyy(PassengerProjectCode, getdataxlsheet(1, row, 7));
+				//		WebElement AdharCard = driver.findElement(By.xpath("//input[@placeholder='Enter aadhar number']["+(2 *( i + 1))+"]"));
+				//		SendKeyy(AdharCard, "123456789");
+				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
+				Thread.sleep(1000);
+				Selectdropdownbyvisibletext(Roomno, "1");
+			}
 			else
 			{
 
@@ -305,15 +341,15 @@ public class RequestFormPageforHotel extends BaseClass {
 				String value = EmployeeCode1.getAttribute("value");
 				if(!value.isEmpty() || value != null)
 				{
-				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+ (2 * i + 1) +"]"));
-				Thread.sleep(1000);
-				Selectdropdownbyvisibletext(Roomno, "1");
-				Thread.sleep(1000);
-				WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[2]"));
-				SendKeyy(Nationality, "IND");
-				Thread.sleep(2000);
-				Down();
-				Enter();
+					WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+ (2 * i + 1) +"]"));
+					Thread.sleep(1000);
+					Selectdropdownbyvisibletext(Roomno, "1");
+					Thread.sleep(1000);
+					WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])[2]"));
+					SendKeyy(Nationality, "IND");
+					Thread.sleep(2000);
+					Down();
+					Enter();
 				}
 			}
 			row++;
@@ -332,11 +368,11 @@ public class RequestFormPageforHotel extends BaseClass {
 		catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
+
+
 	}
-	
-	
+
+
 	public void CobinationHotel(int rows) throws Throwable
 	{
 		implicitwait();
@@ -352,10 +388,10 @@ public class RequestFormPageforHotel extends BaseClass {
 		Thread.sleep(1000);
 		datepicks(getdataxlsheet(0, rows, 2));
 		Thread.sleep(1000);
-//		javascriptclick(Checkout);
-//		Thread.sleep(1000);
-//		datepicks(getdataxlsheet(0, 17, 3));
-//		Selectdropdownbyvisibletext(Adultcoutn, getdataxlsheet(0, rows, 4));
+		//		javascriptclick(Checkout);
+		//		Thread.sleep(1000);
+		//		datepicks(getdataxlsheet(0, 17, 3));
+		//		Selectdropdownbyvisibletext(Adultcoutn, getdataxlsheet(0, rows, 4));
 		int row = 1;
 		List<WebElement> Totalemployees = driver.findElements(By.xpath("//span[contains(text(),'Passenger information')]"));
 		for(int i=0;i<Totalemployees.size();i++)
@@ -364,17 +400,17 @@ public class RequestFormPageforHotel extends BaseClass {
 			String type = Passengerinformation.getText().trim();
 			if(type.contains("GUEST"))	
 			{
-		WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
-		Thread.sleep(1000);
-		Selectdropdownbyvisibletext(Roomno, "1");
-		WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])["+(2 *( i + 1))+"]"));
-		SendKeyy(Nationality, "IND");
-		Thread.sleep(2000);
-		Down();
-		Enter();
-		}
+				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 *( i + 1))+"]"));
+				Thread.sleep(1000);
+				Selectdropdownbyvisibletext(Roomno, "1");
+				WebElement Nationality = driver.findElement(By.xpath("(//input[@placeholder='Nationality'])["+(2 *( i + 1))+"]"));
+				SendKeyy(Nationality, "IND");
+				Thread.sleep(2000);
+				Down();
+				Enter();
+			}
 			else {
-				
+
 				WebElement Roomno = driver.findElement(By.xpath("(//select[contains(@id,'roomNumber')])["+(2 * i + 1)+"]"));
 				Thread.sleep(1000);
 				Selectdropdownbyvisibletext(Roomno, "1");
@@ -397,7 +433,7 @@ public class RequestFormPageforHotel extends BaseClass {
 			// TODO: handle exception
 		}
 	}
-	
-	
+
+
 
 }

@@ -1,5 +1,6 @@
 package org.FlightBookings;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.CardPendingApprovalPage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
@@ -36,14 +37,11 @@ public class DomesticRoundTripbyCU extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
+		    	driver.quit();
 
 		}
 		
 	}
-	
 	@Test(priority=1)
 	public void AirRTdomesticbooking() throws Throwable
 	{
@@ -55,7 +53,7 @@ public class DomesticRoundTripbyCU extends BaseClass {
 		RequestFormPageforAir R = new RequestFormPageforAir();
 		R.RequestFormfillingRT(9);
 		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
-		F.FilterselectionRT();
+		F.FilterselectionRT(9);
 		MyCardPage M = new  MyCardPage();
 		M.AddCard();
 		PriceSummaryPage P = new PriceSummaryPage();
@@ -80,8 +78,21 @@ public class DomesticRoundTripbyCU extends BaseClass {
 		P.pricesummaryDomestic();
 		WalletPage W = new WalletPage();
 		W.Depositpayment();
-		D.Logout();
-		
+		D.Logout();	
 	}
+	
+	@Test(priority=3)
+		public void Ticketing() throws Throwable
+		{
+			implicitwait();
+			GetbackendURL();
+			LoginPage l = new LoginPage();
+			l.AgencyUser();	
+			BookingQueuePage B = new BookingQueuePage();
+			B.FilterRequestRT(getdata2xlsheet(0, 6, 2));
+			B.logout();
+		}
+
+	
 
 }

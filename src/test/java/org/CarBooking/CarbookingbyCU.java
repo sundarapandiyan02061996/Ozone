@@ -1,5 +1,6 @@
 package org.CarBooking;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.CardPendingApprovalPage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
@@ -35,10 +36,7 @@ public class CarbookingbyCU extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-
+		    	driver.quit();
 		}
 		
 	}
@@ -76,7 +74,18 @@ public class CarbookingbyCU extends BaseClass {
 		P.Approve();
 		P.pricesummaryDomestic();
 		D.Logout();
-		
+	}
+	
+	@Test(priority=3)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestCar(getdata2xlsheet(0, 14, 2));
+		B.logout();
 	}
 
 

@@ -27,7 +27,23 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath ="(//button[contains(@class,'log-user')])[1]")
 	WebElement Loginbtn;
 	
+	@FindBy(xpath="//input[@id='email']")
+	WebElement AgencyEmail;
 	
+	@FindBy(xpath ="(//button[contains(@title,'Login')])")
+	WebElement AgencyLoginbtn;
+	
+	
+	
+	
+	public WebElement getAgencyEmail() {
+		return AgencyEmail;
+	}
+
+	public WebElement getAgencyLoginbtn() {
+		return AgencyLoginbtn;
+	}
+
 	public WebElement getLoginbtn() {
 		return Loginbtn;
 	}
@@ -68,6 +84,15 @@ public class LoginPage extends BaseClass {
 		SendKeyy(Email, p.getProperty("ApproveAdminusername"));
 		SendKeyy(Password, p.getProperty("ApproveAdminpassword"));
 		Clicks(Loginbtn);	
+	}
+	
+	public void AgencyUser() throws Exception, Throwable
+	{
+		Properties p = new Properties();
+		p.load(new FileInputStream("./Config.properties"));
+		SendKeyy(AgencyEmail, p.getProperty("AgencyUsername"));
+		SendKeyy(Password, p.getProperty("Agencypassword"));
+		Clicks(AgencyLoginbtn);	
 	}
 }
 

@@ -1,5 +1,6 @@
 package org.CombinationBooking;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
 import org.Classfiles.FiltersandFlightSelectPage;
@@ -63,8 +64,8 @@ public class CombinationbookingbyCA extends BaseClass {
 		D.SelectAir();
 		Air.RequestFormfillingOW(2);
 		F.FilterselectionOW();
-		M.AddHotel();
-		hotel.CobinationHotel(17);
+//		M.AddHotel();
+//		hotel.CobinationHotel(17);
 		M.AddCar();
 		car.CombinationCarRequestformCA(23);
 		M.AddVisa();
@@ -78,7 +79,32 @@ public class CombinationbookingbyCA extends BaseClass {
 		W.Depositpayment();
 		ConfirmationPage C = new ConfirmationPage();
 		C.Combinationdetails(22);
-		D.Logout();
+		//D.Logout();
+	}
+	
+	@Test(priority=2)
+	public void StatusCheck() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestCombinationstatuscheck(getdata2xlsheet(0, 22, 2));
+		B.logout();
+	}
+	
+	@Test(priority=3)
+	public void Ticketing() throws Throwable
+	{
+	
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestCombinations(getdata2xlsheet(0, 22, 2));
+		B.logout();
 	}
 
 }

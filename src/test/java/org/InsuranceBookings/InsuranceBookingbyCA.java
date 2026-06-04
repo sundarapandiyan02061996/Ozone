@@ -1,5 +1,6 @@
 package org.InsuranceBookings;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
 import org.Classfiles.LoginPage;
@@ -14,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class InsuranceBookingbyCA extends BaseClass {
-	
+
 	@BeforeMethod
 	private static void beforetest() throws Throwable
 	{
@@ -22,26 +23,22 @@ public class InsuranceBookingbyCA extends BaseClass {
 		Maximize();	
 		GetURL();
 	}
-	
-	
+
+
 	@AfterMethod
 	private static void Aftertest(ITestResult result) throws Throwable
 	{
-		 if (result.getStatus() == ITestResult.FAILURE) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Failedscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
+		if (result.getStatus() == ITestResult.FAILURE) {
+			String testName = result.getName();
+			String screenshotPath = Failedscreenshots(testName);
+			System.out.println("Screenshot saved: " + screenshotPath);
 
-		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-
+		} else if (result.getStatus() == ITestResult.SUCCESS) {
+			driver.quit();
 		}
-		
 	}
-	
-	@Test(priority=1)
+
+	//@Test(priority=1)
 	public void InsurancebookingCA() throws Throwable
 	{
 		implicitwait();
@@ -59,6 +56,20 @@ public class InsuranceBookingbyCA extends BaseClass {
 		C.InsurancebookingGetdetails(19);
 		D.Logout();
 	}
-	
+
+
+	@Test(priority=2)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestInsurance(getdata2xlsheet(0, 19, 2));
+		B.logout();
+	}
+
+
 
 }

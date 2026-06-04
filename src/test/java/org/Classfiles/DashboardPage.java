@@ -16,6 +16,11 @@ public class DashboardPage extends BaseClass {
 	@FindBy(xpath="//a[contains(@title,' Travel Request')]")
 	WebElement TravelRequestbtn;
 	
+	@FindBy(xpath="//a[contains(@title,' Manage Screen')]")
+	WebElement ManageScreen;
+	
+	@FindBy(xpath="(//ul//li//a[contains(text(),'Manage Profile')])[2]")
+	WebElement ManageProfilebtn;
 	
 	@FindBy(xpath="//ul//li//a[contains(text(),'New Travel Request')]")
 	WebElement NewTravelRequest;
@@ -51,8 +56,42 @@ public class DashboardPage extends BaseClass {
 	@FindBy(xpath="(//a[@title='Log out'])[1]")
 	WebElement Logoutbtn;
 	
+	@FindBy(xpath="//a[contains(@title,'My Account')]")
+	WebElement MyAccount;
+	
+	@FindBy(xpath="(//ul//li//a[contains(text(),' My Bookings')])[1]")
+	WebElement MyBookings;
+	
+	@FindBy(xpath="(//ul//li//a[contains(text(),' Cart')])[1]")
+	WebElement Cart1;
 	
 	
+	
+	public WebElement getMyAccount() {
+		return MyAccount;
+	}
+
+
+	public WebElement getMyBookings() {
+		return MyBookings;
+	}
+
+
+	public WebElement getCart1() {
+		return Cart1;
+	}
+
+
+	public WebElement getManageScreen() {
+		return ManageScreen;
+	}
+
+
+	public WebElement getManageProfilebtn() {
+		return ManageProfilebtn;
+	}
+
+
 	public WebElement getVisabtn() {
 		return Visabtn;
 	}
@@ -127,7 +166,7 @@ public class DashboardPage extends BaseClass {
 	}
 	
 	
-	public void Logout()
+	public void Logout() throws Throwable
 	{
 		implicitwait();
 		Explictwait(Profilebtn);
@@ -202,6 +241,29 @@ public class DashboardPage extends BaseClass {
 		javascriptclick(Insurancebtn);	
 	}
 	
+	public void ManageProfile() throws Throwable
+	{
+		implicitwait();
+		Thread.sleep(1000);
+		Explictwait(ManageScreen);
+		Thread.sleep(1000);
+		javascriptclick(ManageScreen);
+		Thread.sleep(2000);
+		javascriptclick(ManageProfilebtn);
+	}
+	
+	public void Mybooking() throws Throwable
+	{
+		implicitwait();
+		Thread.sleep(1000);
+		Explictwait(MyAccount);
+		Thread.sleep(1000);
+		javascriptclick(MyAccount);
+		Thread.sleep(2000);
+		javascriptclick(MyBookings);
+		Thread.sleep(2000);
+		javascriptclick(Cart1);	
+	}
 	
 	
 	

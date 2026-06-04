@@ -36,12 +36,20 @@ public class ConfirmationPage extends BaseClass {
 		WebDriverWait w = new WebDriverWait(driver, 40);
 		WebElement OrderID = w.until(
 		        ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@class='order-id pull-right'])[1]")));
-		String orderID = OrderID.getText().trim();
+		String orderID = OrderID.getText().trim().replaceAll("[^0-9]", "");
 		System.out.println(orderID);
 		excellwrite(0, row, 2, orderID);
 		String Package = PackageID.getText().trim();
 		System.out.println("The Package ID " + Package);
 		excellwrite(0, row, 3, Package);
+		try
+		{
+			WebElement proceedpayment =  driver.findElement(By.xpath("//button[@id='proceed']"));
+			Clicks(proceedpayment);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	public void HotelbookingGetdetails(int row) throws Throwable
@@ -49,7 +57,7 @@ public class ConfirmationPage extends BaseClass {
 		WebDriverWait w = new WebDriverWait(driver, 40);
 		WebElement OrderID = w.until(
 		        ExpectedConditions.visibilityOfElementLocated(By.xpath("(//p[contains(@class,'cls-order-id')])[1]")));
-		String orderID = OrderID.getText().trim();
+		String orderID = OrderID.getText().trim().replaceAll("[^0-9]", "");
 		System.out.println(orderID);
 		excellwrite(0, row, 2, orderID);
 		String Package = PackageID.getText().trim();
@@ -62,7 +70,7 @@ public class ConfirmationPage extends BaseClass {
 		WebDriverWait w = new WebDriverWait(driver, 40);
 		WebElement OrderID = w.until(
 		        ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'insurance-order-id visa-order')]")));
-		String orderID = OrderID.getText().trim();
+		String orderID = OrderID.getText().trim().replaceAll("[^0-9]", "");
 		System.out.println(orderID);
 		excellwrite(0, row, 2, orderID);
 		String Package = PackageID.getText().trim();
@@ -75,7 +83,7 @@ public class ConfirmationPage extends BaseClass {
 		WebDriverWait w = new WebDriverWait(driver, 40);
 		WebElement OrderID = w.until(
 		        ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'insurance-order-id')]")));
-		String orderID = OrderID.getText().trim();
+		String orderID = OrderID.getText().trim().replaceAll("[^0-9]", "");
 		System.out.println(orderID);
 		excellwrite(0, row, 2, orderID);
 		String Package = PackageID.getText().trim();
@@ -90,7 +98,19 @@ public class ConfirmationPage extends BaseClass {
 		        ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class,'package-id')]")));
 		String Package = PackageID.getText().trim();
 		System.out.println("The Package ID " + Package);
-		excellwrite(0, row, 3, Package);
+		excellwrite(0, row, 2, Package);
+		WebElement FlightorderID = driver.findElement(By.xpath("(//div[@class='itinerary-details flight']//span[contains(@class,'order-id')])[1]"));
+		String flightorderID = FlightorderID.getText().trim().replaceAll("[^0-9]", "");
+		excellwrite(0, row, 3, flightorderID);
+		WebElement CarorderID = driver.findElement(By.xpath("(//div[@class='itinerary-details car']//span[contains(@class,'order-id')])[1]"));
+		String carorderID = CarorderID.getText().trim().replaceAll("[^0-9]", "");
+		excellwrite(0, row, 4, carorderID);
+		WebElement VisaorderID = driver.findElement(By.xpath("//div[contains(@class,'insurance-order-id visa-order')]"));
+		String visaorderID = VisaorderID.getText().trim().replaceAll("[^0-9]", "");
+		excellwrite(0, row, 5, visaorderID);
+		WebElement InsuranceorderID = driver.findElement(By.xpath("(//div[contains(@class,'insurance-order-id')])[2]"));
+		String insuranceorderID = InsuranceorderID.getText().trim().replaceAll("[^0-9]", "");
+		excellwrite(0, row, 6, insuranceorderID);
 	}
 
 

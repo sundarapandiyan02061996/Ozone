@@ -3,13 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="org.CombinationBooking.CombinationbookingbyCA">
+      <class name="org.Hotelbookings.HotelbookingbyCAuser">
         <methods>
           <include name="beforetest"/>
+          <include name="HotelbookingCA"/>
+          <include name="Ticketing"/>
           <include name="Aftertest"/>
-          <include name="AirOWdomesticbooking"/>
         </methods>
-      </class> <!-- org.CombinationBooking.CombinationbookingbyCA -->
+      </class> <!-- org.Hotelbookings.HotelbookingbyCAuser -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

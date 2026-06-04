@@ -39,7 +39,7 @@ public class Hotelroomtypepage extends BaseClass {
 
 
 
-	public void roomtypes()
+	public void roomtypes() throws Throwable
 	{
 		implicitwait();
 		WebDriverWait w = new WebDriverWait(driver, 100);
@@ -49,6 +49,7 @@ public class Hotelroomtypepage extends BaseClass {
 		javascriptclick(ClickMoreDetails);
 		Explictwait(AddCart);
 		javascriptclick(AddCart);
+		
 	}
 	
 	

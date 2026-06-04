@@ -203,7 +203,7 @@ public class RequestFormPageforInsurance extends BaseClass {
 			}
 			else
 			{
-				System.out.println("Details are already given");
+				//System.out.println("Details are already given");
 			}
 		}		
 		Clicks(Submitbtn);

@@ -55,7 +55,7 @@ public class InternationalOnewaybyCU extends BaseClass {
 		RequestFormPageforAir R = new RequestFormPageforAir();
 		R.RequestFormfillingInternationalOW(10);
 		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
-		F.InternationalFilterselectionOW();
+		F.InternationalFilterselectionOW(4, 7);
 		MyCardPage M = new  MyCardPage();
 		M.AddCard();
 		PriceSummaryPage P = new PriceSummaryPage();

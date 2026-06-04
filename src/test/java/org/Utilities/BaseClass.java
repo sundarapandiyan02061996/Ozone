@@ -281,8 +281,9 @@ public class BaseClass {
 	}
 
 	// Java script click
-	public static void javascriptclick(WebElement ref) {
+	public static void javascriptclick(WebElement ref) throws Throwable {
 
+		Thread.sleep(1000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click()", ref);
 
@@ -376,7 +377,7 @@ public class BaseClass {
 	}
 
 
-	public void selectDate(String year, String month, String date) {
+	public void selectDate(String year, String month, String date) throws Throwable {
 
 		String target = month + " " + year;
 		for (int i = 0; i < 12; i++) {
@@ -422,6 +423,14 @@ public class BaseClass {
 	{
 		Actions action = new Actions(driver);
 		action.moveToElement(ele);
+	}
+	
+	public void GetbackendURL() throws Throwable, IOException
+	{
+		Properties prop = new Properties();
+		prop.load(new FileInputStream("./Config.properties"));
+		String Agencyurl = prop.getProperty("AgencyURL");
+		driver.get(Agencyurl);
 	}
 	
 

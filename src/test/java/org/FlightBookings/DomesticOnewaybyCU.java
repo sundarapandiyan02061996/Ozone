@@ -2,6 +2,7 @@ package org.FlightBookings;
 
 import javax.annotation.Priority;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.CardPendingApprovalPage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
@@ -36,9 +37,7 @@ public class DomesticOnewaybyCU extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
+		    	driver.quit();
 		}
 		 
 		
@@ -55,7 +54,7 @@ public class DomesticOnewaybyCU extends BaseClass {
 		RequestFormPageforAir R = new RequestFormPageforAir();
 		R.RequestFormfillingOW(8);
 		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
-		F.FilterselectionOW();
+		F.FilterselectionOW(8, 5);
 		MyCardPage M = new  MyCardPage();
 		M.AddCard();
 		PriceSummaryPage P = new PriceSummaryPage();
@@ -81,8 +80,19 @@ public class DomesticOnewaybyCU extends BaseClass {
 		P.pricesummaryDomestic();
 		WalletPage W = new WalletPage();
 		W.Depositpayment();
-		D.Logout();
-		
+		D.Logout();	
+	}
+	
+	@Test(priority=3)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequest(getdata2xlsheet(0, 5, 2));
+		B.logout();
 	}
 
 }

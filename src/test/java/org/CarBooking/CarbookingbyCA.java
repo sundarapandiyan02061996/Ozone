@@ -1,5 +1,6 @@
 package org.CarBooking;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
 import org.Classfiles.FiltersandFlightSelectPage;
@@ -16,7 +17,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CarbookingbyCA extends BaseClass {
-	
+
 	@BeforeMethod
 	private static void beforetest() throws Throwable
 	{
@@ -24,25 +25,21 @@ public class CarbookingbyCA extends BaseClass {
 		Maximize();	
 		GetURL();
 	}
-	
-	
+
+
 	@AfterMethod
 	private static void Aftertest(ITestResult result) throws Throwable
 	{
-		 if (result.getStatus() == ITestResult.FAILURE) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Failedscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
+		if (result.getStatus() == ITestResult.FAILURE) {
+			String testName = result.getName();
+			String screenshotPath = Failedscreenshots(testName);
+			System.out.println("Screenshot saved: " + screenshotPath);
 
-		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-
+		} else if (result.getStatus() == ITestResult.SUCCESS) {
+			driver.quit();
 		}
-		
 	}
-	
+
 	@Test(priority=1)
 	public void CarbookingCA() throws Throwable
 	{
@@ -59,6 +56,19 @@ public class CarbookingbyCA extends BaseClass {
 		C.FlightbookingGetdetails(13);
 		D.Logout();
 	}
+
+	@Test(priority=2)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestCar(getdata2xlsheet(0, 13, 2));
+		B.logout();
+	}
+
 
 
 }

@@ -1,5 +1,6 @@
 package org.InsuranceBookings;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.CardPendingApprovalPage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
@@ -15,7 +16,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class InsuranceBookingbyCU extends BaseClass {
-	
+
 	@BeforeMethod
 	private static void beforetest() throws Throwable
 	{
@@ -23,27 +24,24 @@ public class InsuranceBookingbyCU extends BaseClass {
 		Maximize();	
 		GetURL();
 	}
-	
-	
+
+
 	@AfterMethod
 	private static void Aftertest(ITestResult result) throws Throwable
 	{
-		 if (result.getStatus() == ITestResult.FAILURE) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Failedscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
+		if (result.getStatus() == ITestResult.FAILURE) {
+			String testName = result.getName();
+			String screenshotPath = Failedscreenshots(testName);
+			System.out.println("Screenshot saved: " + screenshotPath);
 
-		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-
+		} else if (result.getStatus() == ITestResult.SUCCESS) {
+			driver.quit();
 		}
-		
+
 	}
-	
+
 	@Test(priority=1)
-	public void visabookingCU() throws Throwable
+	public void InsurancebookingCU() throws Throwable
 	{
 		implicitwait();
 		LoginPage l = new LoginPage();
@@ -60,7 +58,7 @@ public class InsuranceBookingbyCU extends BaseClass {
 		C.InsurancebookingGetdetails(20);
 		D.Logout();
 	}
-	
+
 	@Test(priority=2)
 	public void ApprovetheBooking() throws Throwable
 	{
@@ -74,9 +72,20 @@ public class InsuranceBookingbyCU extends BaseClass {
 		PriceSummaryPage P = new PriceSummaryPage();
 		P.Approve();
 		P.pricesummaryDomestic();
-		D.Logout();
-		
+		D.Logout();	
 	}
-	
+
+	@Test(priority=3)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestInsurance(getdata2xlsheet(0, 20, 2));
+		B.logout();
+	}
+
 
 }

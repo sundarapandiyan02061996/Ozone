@@ -1,5 +1,6 @@
 package org.FlightBookings;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
 import org.Classfiles.FiltersandFlightSelectPage;
@@ -21,7 +22,6 @@ public class DomesticOnewaybyCA extends BaseClass {
 	{
 		LaunchBrowser();
 		Maximize();	
-		GetURL();
 	}
 	
 	
@@ -34,10 +34,7 @@ public class DomesticOnewaybyCA extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-
+		    	driver.quit();
 		}
 		
 	}
@@ -45,6 +42,7 @@ public class DomesticOnewaybyCA extends BaseClass {
 	@Test(priority=1)
 	public void AirOWdomesticbooking() throws Throwable
 	{
+		GetURL();
 		implicitwait();
 		LoginPage l = new LoginPage();
 		l.Corporateadminlogin();
@@ -53,7 +51,7 @@ public class DomesticOnewaybyCA extends BaseClass {
 		RequestFormPageforAir R = new RequestFormPageforAir();
 		R.RequestFormfillingOW(2);
 		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
-		F.FilterselectionOW();
+		F.FilterselectionOW(2, 1);
 		MyCardPage M = new  MyCardPage();
 		M.AddCard();
 		PriceSummaryPage P = new PriceSummaryPage();
@@ -63,6 +61,18 @@ public class DomesticOnewaybyCA extends BaseClass {
 		ConfirmationPage C = new ConfirmationPage();
 		C.FlightbookingGetdetails(1);
 		D.Logout();
+	}
+	
+	//@Test(priority=2)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequest(getdata2xlsheet(0, 1, 2));
+		B.logout();
 	}
 
 }

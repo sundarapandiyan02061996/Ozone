@@ -1,5 +1,6 @@
 package org.Hotelbookings;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
 import org.Classfiles.FiltersandFlightSelectPage;
@@ -37,15 +38,11 @@ public class HotelbookingbyCAuser extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-		}
-		 
-		
+		  driver.quit();
+		}	
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void HotelbookingCA() throws Throwable
 	{
 		implicitwait();
@@ -67,8 +64,21 @@ public class HotelbookingbyCAuser extends BaseClass {
 		W.Depositpayment();
 		ConfirmationPage C = new ConfirmationPage();
 		C.HotelbookingGetdetails(10);
-		D.Logout();
-		
+		D.Logout();	
 	}
+	
+
+	@Test(priority=2)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestHotel(getdata2xlsheet(0, 10, 2));
+		B.logout();
+	}
+
 
 }

@@ -29,7 +29,7 @@ public class WalletPage extends BaseClass {
 		return Paymentbutton;
 	}
 	
-	public void Depositpayment()
+	public void Depositpayment() throws Throwable
 	{
 		implicitwait();
 		WebDriverWait w = new WebDriverWait(driver, 180);

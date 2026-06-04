@@ -1,5 +1,6 @@
 package org.Hotelbookings;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.CardPendingApprovalPage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
@@ -36,16 +37,14 @@ public class HotelbookingbyCU extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
+		    driver.quit();
 		}
 		 
 		
 	}
 	
 	@Test(priority=1)
-	public void HotelbookingCA() throws Throwable
+	public void HotelbookingCU() throws Throwable
 	{
 		implicitwait();
 		LoginPage l = new LoginPage();
@@ -82,9 +81,21 @@ public class HotelbookingbyCU extends BaseClass {
 		P.pricesummaryDomestic();
 		WalletPage W = new WalletPage();
 		W.Depositpayment();
-		D.Logout();
-		
+		D.Logout();	
 	}
+	
+	@Test(priority=3)
+		public void Ticketing() throws Throwable
+		{
+		
+			implicitwait();
+			GetbackendURL();
+			LoginPage l = new LoginPage();
+			l.AgencyUser();	
+			BookingQueuePage B = new BookingQueuePage();
+			B.FilterRequestHotel(getdata2xlsheet(0, 11, 2));
+			B.logout();
+		}
 
 
 }

@@ -1,5 +1,6 @@
 package org.VisaBooking;
 
+import org.Classfiles.BookingQueuePage;
 import org.Classfiles.CardPendingApprovalPage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
@@ -35,12 +36,8 @@ public class VisabookingbyCU extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	String testName = result.getName();
-		    	  String screenshotPath = Passscreenshots(testName);
-		    	  System.out.println("Screenshot saved: " + screenshotPath);
-
-		}
-		
+		   driver.quit();
+		}	
 	}
 	
 	@Test(priority=1)
@@ -79,6 +76,17 @@ public class VisabookingbyCU extends BaseClass {
 		
 	}
 	
+	@Test(priority=3)
+	public void Ticketing() throws Throwable
+	{
+		implicitwait();
+		GetbackendURL();
+		LoginPage l = new LoginPage();
+		l.AgencyUser();	
+		BookingQueuePage B = new BookingQueuePage();
+		B.FilterRequestVisa(getdata2xlsheet(0, 17, 2));
+		B.logout();
+	}
 
 	
 	
