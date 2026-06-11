@@ -49,7 +49,7 @@ public class DomesticOnewaybyCA extends BaseClass {
 		DashboardPage D = new DashboardPage();
 		D.SelectAir();
 		RequestFormPageforAir R = new RequestFormPageforAir();
-		R.RequestFormfillingOW(2);
+		R.RequestFormfillingOW(2); 
 		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
 		F.FilterselectionOW(2, 1);
 		MyCardPage M = new  MyCardPage();

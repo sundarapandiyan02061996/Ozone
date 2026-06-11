@@ -224,6 +224,9 @@ public class BookingQueuePage extends BaseClass {
 	@FindBy(xpath="(//a[contains(@title,'Cancel')])[2]")
 	WebElement Cancelbtn;
 	
+	@FindBy(xpath="(//a[contains(@title,'Cancel')])[5]")
+	WebElement FlightCancelbtn;
+	
 	@FindBy(xpath="//button[contains(text(),'Proceed')]")
 	WebElement Proceedwhenopentherequest;
 	
@@ -236,11 +239,44 @@ public class BookingQueuePage extends BaseClass {
 	@FindBy(xpath="//input[contains(@value,'Submit')]")
 	WebElement Submitbtnincacel;
 	
+	@FindBy(xpath="(//input[contains(@value,'Submit')])[1]")
+	WebElement Submitbtnincacelforflight;
+	
 	@FindBy(xpath="//button[contains(text(),'Ok')]")
 	WebElement Okbtn;
 	
+	@FindBy(xpath="//input[@id='splitPnr00']")
+	WebElement SplitPNR;
+	
+	@FindBy(xpath="//input[@id='splitPnr10']")
+	WebElement SplitPNR2;
+	
+	@FindBy(xpath="//input[@value='Next']")
+	WebElement Nextbtn;
 	
 	
+	
+	
+	public WebElement getSplitPNR2() {
+		return SplitPNR2;
+	}
+
+	public WebElement getNextbtn() {
+		return Nextbtn;
+	}
+
+	public WebElement getSplitPNR() {
+		return SplitPNR;
+	}
+
+	public WebElement getFlightCancelbtn() {
+		return FlightCancelbtn;
+	}
+
+	public WebElement getSubmitbtnincacelforflight() {
+		return Submitbtnincacelforflight;
+	}
+
 	public WebElement getCancelbtn() {
 		return Cancelbtn;
 	}
@@ -608,8 +644,13 @@ public class BookingQueuePage extends BaseClass {
 			SendKeyy(Reservationreferencefield, "Testing");
 			SendKeyy(AirlinePNR, "ABCD1234");
 			SendKeyy(Ticketno, "123456789");
+			try
+			{
 			SendKeyy(Cancellfee, "123");
 			Selectdropdownbyvalue(Airlineloginiddpd, "3");
+			}
+			catch (Exception e) {
+			}
 			Selectdropdownbyvisibletext(Faretypedpd, "Corporate Fare");
 			javascriptscrollup(Return);
 			javascriptclick(Return);
@@ -617,8 +658,13 @@ public class BookingQueuePage extends BaseClass {
 			SendKeyy(ReservationreferencefieldReturn, "Testing");
 			SendKeyy(AirlinePNRReturn, "ABCD1234");
 			SendKeyy(TicketnoReturn, "123456789");
+			try
+			{
 			SendKeyy(CancellfeeReturn, "123");
 			Selectdropdownbyvalue(AirlineloginiddpdReturn, "3");
+			}
+			catch (Exception e) {
+			}
 			Selectdropdownbyvisibletext(FaretypedpdReturn, "Corporate Fare");
 			javascriptscrolldown(Submitbtn);
 			Clicks(Submitbtn);
@@ -1131,8 +1177,94 @@ public class BookingQueuePage extends BaseClass {
 		}
 	
 
+
+	public void Flightcancel(String ID) throws Throwable
+	{
+		implicitwait();
+		WebDriverWait w = new WebDriverWait(driver, 30);
+		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'fil-icon')]")));
+		//Clicks(Operations);
+		Thread.sleep(500);
+		javascriptclick(CancellationQueue);
+		Thread.sleep(3000);
+		WebElement filter = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div//div//a//i[contains(@class,'fa fa-filter')]")));
+		Clicks(filter);
+		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li//a[contains(text(),'Reference Based')]")));
+		Clicks(Referencebasedbtn);
+		Selectdropdownbyvisibletext(Referencetypedpd, "Order ID");
+		SendKeyy(ReferenceID, ID);
+		Clicks(Searchbtn);
+		Thread.sleep(1000);
+			Explictwait(Expanddetails);
+			Clicks(Expanddetails);
+			Explictwait(FlightCancelbtn);
+			Clicks(FlightCancelbtn);
+			try
+			{
+				Clicks(Proceedwhenopentherequest);
+			}
+			catch (Exception e) {
+			}
+			
+			List<WebElement> Allcancelcharge = driver.findElements(By.xpath("//input[contains(@id,'cancellationCharge')]"));
+			for(int i=0; i<Allcancelcharge.size();i++)
+			{
+				WebElement Cancelchargefield = Allcancelcharge.get(i);
+				SendKeyy(Cancelchargefield, "10");
+				break;
+			}
+			Thread.sleep(2000);
+			Clicks(Submitbtnincacelforflight);
+			w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Ok')]")));
+			Clicks(Okbtn);
+		}
 	
 	
+	
+	public void CrosspaxFlightcancelRT(String ID) throws Throwable
+	{
+		implicitwait();
+		WebDriverWait w = new WebDriverWait(driver, 30);
+		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'fil-icon')]")));
+		//Clicks(Operations);
+		Thread.sleep(500);
+		javascriptclick(CancellationQueue);
+		Thread.sleep(3000);
+		WebElement filter = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div//div//a//i[contains(@class,'fa fa-filter')]")));
+		Clicks(filter);
+		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li//a[contains(text(),'Reference Based')]")));
+		Clicks(Referencebasedbtn);
+		Selectdropdownbyvisibletext(Referencetypedpd, "Order ID");
+		SendKeyy(ReferenceID, ID);
+		Clicks(Searchbtn);
+		Thread.sleep(1000);
+			Explictwait(Expanddetails);
+			Clicks(Expanddetails);
+			Explictwait(FlightCancelbtn);
+			Clicks(FlightCancelbtn);
+			try
+			{
+				Clicks(Proceedwhenopentherequest);
+			}
+			catch (Exception e) {
+			}
+			
+			List<WebElement> Allcancelcharge = driver.findElements(By.xpath("//input[contains(@id,'cancellationCharge')]"));
+			for(int i=0; i<Allcancelcharge.size();i++)
+			{
+				WebElement Cancelchargefield = Allcancelcharge.get(i);
+				SendKeyy(Cancelchargefield, "10");
+				break;
+			}
+			Thread.sleep(2000); 
+			SendKeyy(SplitPNR, "123456");
+			WebElement Nextbtn = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Next']")));
+			Clicks(Nextbtn);
+			SendKeyy(SplitPNR2, "123456");
+			Clicks(Submitbtnincacelforflight);
+			w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Ok')]")));
+			Clicks(Okbtn);
+		}
 	
 	
 	

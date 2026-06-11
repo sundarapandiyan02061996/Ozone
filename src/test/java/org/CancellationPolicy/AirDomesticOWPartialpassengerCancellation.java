@@ -3,13 +3,12 @@ package org.CancellationPolicy;
 import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
-import org.Classfiles.Hotelroomtypepage;
+import org.Classfiles.FiltersandFlightSelectPage;
 import org.Classfiles.LoginPage;
 import org.Classfiles.MyBookingListPage;
 import org.Classfiles.MyCardPage;
 import org.Classfiles.PriceSummaryPage;
-import org.Classfiles.RequestFormPageforHotel;
-import org.Classfiles.RoomDetailsPage;
+import org.Classfiles.RequestFormPageforAir;
 import org.Classfiles.WalletPage;
 import org.Utilities.BaseClass;
 import org.testng.ITestResult;
@@ -17,14 +16,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class HotelCancellation extends BaseClass {
+public class AirDomesticOWPartialpassengerCancellation extends BaseClass {
+	
 	
 	@BeforeMethod
 	private static void beforetest() throws Throwable
 	{
 		LaunchBrowser();
 		Maximize();	
-		GetURL();
 	}
 	
 	
@@ -37,24 +36,24 @@ public class HotelCancellation extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		  driver.quit();
-		}	
+		    	driver.quit();
+		}
+		
 	}
 	
 	@Test(priority=1)
-	public void HotelbookingCA() throws Throwable
+	public void AirOWdomesticbooking() throws Throwable
 	{
+		GetURL();
 		implicitwait();
 		LoginPage l = new LoginPage();
 		l.Corporateadminlogin();
 		DashboardPage D = new DashboardPage();
-		D.Selecthotel();
-		RequestFormPageforHotel R = new RequestFormPageforHotel();
-		R.HotelRequestform(17);
-		RoomDetailsPage room = new RoomDetailsPage();
-		room.Selectroom();
-		Hotelroomtypepage H = new Hotelroomtypepage();
-		H.roomtypes();
+		D.SelectAir();
+		RequestFormPageforAir R = new RequestFormPageforAir();
+		R.RequestFormfillingOW(2);
+		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
+		F.FilterselectionOW(2, 1);
 		MyCardPage M = new  MyCardPage();
 		M.AddCard();
 		PriceSummaryPage P = new PriceSummaryPage();
@@ -62,11 +61,10 @@ public class HotelCancellation extends BaseClass {
 		WalletPage W = new WalletPage();
 		W.Depositpayment();
 		ConfirmationPage C = new ConfirmationPage();
-		C.HotelbookingGetdetails(10);
-		D.Logout();	
+		C.FlightbookingGetdetails(25);
+		D.Logout();
 	}
 	
-
 	@Test(priority=2)
 	public void Ticketing() throws Throwable
 	{
@@ -75,24 +73,25 @@ public class HotelCancellation extends BaseClass {
 		LoginPage l = new LoginPage();
 		l.AgencyUser();	
 		BookingQueuePage B = new BookingQueuePage();
-		B.FilterRequestHotel(getdata2xlsheet(0, 10, 2));
+		B.FilterRequest(getdata2xlsheet(0, 25, 2));
 		B.logout();
 	}
 	
 	@Test(priority=3)
-	public void HotelCencellationbyCA() throws Throwable
+	public void AirCencellationbyCA() throws Throwable
 	{
 		implicitwait();
+		GetURL();
 		LoginPage l = new LoginPage();
 		l.Corporateadminlogin();
 		DashboardPage D = new DashboardPage();
 		D.Mybooking();
-		MyBookingListPage M = new MyBookingListPage();
-		M.Cancelbooking();
+		MyBookingListPage M = new MyBookingListPage(); 
+		M.CancelPartialFlightbooking(25);
 		D.Logout();
 	}
 	
-	@Test(priority=4)
+	@Test(priority= 4)
 		public void CancellationConfirmbyCU() throws Throwable
 		{
 			implicitwait();
@@ -100,10 +99,8 @@ public class HotelCancellation extends BaseClass {
 			LoginPage l = new LoginPage();
 			l.AgencyUser();	
 			BookingQueuePage B = new BookingQueuePage();
-			B.Carcancel(getdata2xlsheet(0, 13, 2));
+			B.Flightcancel(getdata2xlsheet(0, 25, 2));
 			B.logout();
 		}
-
-
 
 }

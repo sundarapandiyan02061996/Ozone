@@ -1,10 +1,11 @@
-package org.FlightBookings;
+package org.CancellationPolicy;
 
 import org.Classfiles.BookingQueuePage;
 import org.Classfiles.ConfirmationPage;
 import org.Classfiles.DashboardPage;
 import org.Classfiles.FiltersandFlightSelectPage;
 import org.Classfiles.LoginPage;
+import org.Classfiles.MyBookingListPage;
 import org.Classfiles.MyCardPage;
 import org.Classfiles.PriceSummaryPage;
 import org.Classfiles.RequestFormPageforAir;
@@ -15,43 +16,44 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class DomesticRoundTripbyCA extends BaseClass {
-
+public class AirDomesticOWAllpassengerCancellation extends BaseClass {
+	
+	
 	@BeforeMethod
 	private static void beforetest() throws Throwable
 	{
 		LaunchBrowser();
 		Maximize();	
-		GetURL();
 	}
-
-
+	
+	
 	@AfterMethod
 	private static void Aftertest(ITestResult result) throws Throwable
 	{
-		if (result.getStatus() == ITestResult.FAILURE) {
-			String testName = result.getName();
-			String screenshotPath = Failedscreenshots(testName);
-			System.out.println("Screenshot saved: " + screenshotPath);
+		 if (result.getStatus() == ITestResult.FAILURE) {
+		    	String testName = result.getName();
+		    	  String screenshotPath = Failedscreenshots(testName);
+		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
-		} else if (result.getStatus() == ITestResult.SUCCESS) {
-			driver.quit();
+		    } else if (result.getStatus() == ITestResult.SUCCESS) {
+		    	driver.quit();
 		}
-
+		
 	}
-
-//	@Test(priority=1)
-	public void AirRTdomesticbooking() throws Throwable
+	
+	@Test(priority=1)
+	public void AirOWdomesticbooking() throws Throwable
 	{
+		GetURL();
 		implicitwait();
 		LoginPage l = new LoginPage();
 		l.Corporateadminlogin();
 		DashboardPage D = new DashboardPage();
 		D.SelectAir();
 		RequestFormPageforAir R = new RequestFormPageforAir();
-		R.RequestFormfillingRT(3);
+		R.RequestFormfillingOW(2);
 		FiltersandFlightSelectPage F = new FiltersandFlightSelectPage();
-		F.FilterselectionRT(3);
+		F.FilterselectionOW(2, 1);
 		MyCardPage M = new  MyCardPage();
 		M.AddCard();
 		PriceSummaryPage P = new PriceSummaryPage();
@@ -59,10 +61,10 @@ public class DomesticRoundTripbyCA extends BaseClass {
 		WalletPage W = new WalletPage();
 		W.Depositpayment();
 		ConfirmationPage C = new ConfirmationPage();
-		C.FlightbookingGetdetails(2);
+		C.FlightbookingGetdetails(24);
 		D.Logout();
 	}
-
+	
 	@Test(priority=2)
 	public void Ticketing() throws Throwable
 	{
@@ -71,9 +73,36 @@ public class DomesticRoundTripbyCA extends BaseClass {
 		LoginPage l = new LoginPage();
 		l.AgencyUser();	
 		BookingQueuePage B = new BookingQueuePage();
-		B.FilterRequestRT(getdata2xlsheet(0, 2, 2));
+		B.FilterRequest(getdata2xlsheet(0, 24, 2));
 		B.logout();
 	}
-
+	
+	@Test(priority=3)
+	public void AirCencellationbyCA() throws Throwable
+	{
+		implicitwait();
+		GetURL();
+		LoginPage l = new LoginPage();
+		l.Corporateadminlogin();
+		DashboardPage D = new DashboardPage();
+		D.Mybooking();
+		MyBookingListPage M = new MyBookingListPage(); 
+		M.CancelAllFlightbooking(24);
+		D.Logout();
+	}
+	
+	@Test(priority=4)
+		public void CancellationConfirmbyCU() throws Throwable
+		{
+			implicitwait();
+			GetbackendURL();
+			LoginPage l = new LoginPage();
+			l.AgencyUser();	
+			BookingQueuePage B = new BookingQueuePage();
+			B.Flightcancel(getdata2xlsheet(0, 24, 2));
+			B.logout();
+		}
+	
+	
 
 }

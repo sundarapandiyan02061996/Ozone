@@ -75,7 +75,7 @@ public class CarCancellation extends BaseClass {
 		DashboardPage D = new DashboardPage();
 		D.Mybooking();
 		MyBookingListPage M = new MyBookingListPage();
-		M.Cancelbooking();
+		M.Cancelbooking(13);
 		D.Logout();
 	}
 	
