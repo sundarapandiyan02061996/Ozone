@@ -53,7 +53,7 @@ public class ManageCorporatePage extends BaseClass {
 	@FindBy(xpath="//textarea[@placeholder='Address']")
 	WebElement Address;
 
-	@FindBy(xpath="(//select[contains(@name,'country') or contains(@id,'country')])[2]")
+	@FindBy(xpath="//select[@class='form-control ng-pristine ng-valid ng-empty ng-touched']")
 	WebElement Country;
 
 	@FindBy(xpath="//select[contains(@name,'timezone') or contains(@id,'timezone')]")
@@ -247,6 +247,7 @@ public class ManageCorporatePage extends BaseClass {
 		SendKeyy(EmailId, getdataxlsheet(3, rownumber, 6));
 		SendKeyy(Corporatename, getdataxlsheet(3, rownumber, 7));
 		SendKeyy(Address, getdataxlsheet(3, rownumber, 8));
+		Thread.sleep(500);
 		Selectdropdownbyvisibletext(Country, getdataxlsheet(3, rownumber, 9));
 		Clicks(State);
 		Selectdropdownbyvisibletext(State, getdataxlsheet(3, rownumber, 10));

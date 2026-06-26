@@ -234,26 +234,19 @@ public class BaseClass {
 
 		LocalDate currentDate = LocalDate.now();
 		LocalDate futureDate = currentDate.plusDays(Integer.valueOf(ref));
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-		String formattedDate = futureDate.format(formatter).trim();
-		String[] split = formattedDate.split(" ");
-		String day = split[0];
-		String month = split[1];
-		String year = split[2];
-		Thread.sleep(500);
-		WebElement year1 = driver.findElement(By.xpath("//div//select[contains(@class, 'ui-datepicker-year')]"));
-		Select s = new Select(year1);
-		s.selectByVisibleText(year);
-		Thread.sleep(500);
-		WebElement month1 = driver.findElement(By.xpath("//div//select[contains(@class, 'ui-datepicker-month')]"));
-		String mon = month1.getText().trim().substring(0, 3);
-		Select select = new Select(month1);
-		select.selectByVisibleText(mon);
-		Thread.sleep(500);
-		WebElement date = driver
-				.findElement(By.xpath("//table[@class='ui-datepicker-calendar']//tr//td//a[text()=" + day + "]"));
-		Thread.sleep(500);
-		Clicks(date);
+		String day = String.valueOf(futureDate.getDayOfMonth());
+		String month = futureDate.format(DateTimeFormatter.ofPattern("MMM")); // Sep
+		String year = String.valueOf(futureDate.getYear());
+		System.out.println("Day = " + day);
+		System.out.println("Month = " + month);
+		System.out.println("Year = " + year);
+		WebElement year1 = driver.findElement(By.xpath("//select[contains(@class,'ui-datepicker-year')]"));
+		new Select(year1).selectByVisibleText(year);
+		WebElement month1 = driver.findElement(By.xpath("//select[contains(@class,'ui-datepicker-month')]"));
+		new Select(month1).selectByVisibleText(month);
+		WebElement date = driver.findElement(
+		        By.xpath("//table[@class='ui-datepicker-calendar']//a[text()='" + day + "']"));
+		date.click();
 	}
 
 	// Scroll down

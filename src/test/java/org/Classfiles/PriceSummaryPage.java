@@ -17,26 +17,26 @@ public class PriceSummaryPage extends BaseClass {
 	{
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+
+
 	@FindBy(xpath="//button[@id='proceed']")
 	WebElement ProceedtoPay;
-	
+
 	@FindBy(xpath="//button[@id='proceedApproval']")
 	WebElement SendforApproval;
-	
+
 	@FindBy(xpath="(//input[@value='Yes'])[3]")
 	WebElement Yesbtn;
-	
+
 	@FindBy(xpath="//button[contains(text(),'Approve')]")
 	WebElement Approvebtn;
-	
+
 	@FindBy(xpath="//button[contains(text(),'Pay to submit')]")
 	WebElement Paytosubmit;
-	
-	
-	
-	
+
+
+
+
 	public WebElement getPaytosubmit() {
 		return Paytosubmit;
 	}
@@ -65,17 +65,17 @@ public class PriceSummaryPage extends BaseClass {
 		Clicks(ProceedtoPay);
 		try
 		{
-		Thread.sleep(1000);
-		Clicks(Yesbtn);	
+			Thread.sleep(1000);
+			Clicks(Yesbtn);	
 		}
 		catch (Exception e) {
 		}
 	}
-	
+
 	public void pricesummaryInternataional() throws Throwable
 	{
 		implicitwait();
-		WebDriverWait w = new WebDriverWait(driver, 30);
+		WebDriverWait w = new WebDriverWait(driver, 10);
 		w.until(ExpectedConditions.elementToBeClickable(ProceedtoPay));
 		List<WebElement> TotalAdults = driver.findElements(By.xpath("//div[@class='passenger-details']//span[contains(text(),'Adult')]"));
 		int Noofadults = TotalAdults.size();
@@ -94,28 +94,28 @@ public class PriceSummaryPage extends BaseClass {
 		List<WebElement> Submitbtn = driver.findElements(By.xpath("//a[@title='Submit']"));
 		int sheetnum = 1;
 		int rownumber = 15;
-		int temp =3; // Unable to take proper xpath of Expiry date calender field due to UI issue. once the issue has fixed we should change the xpath accodingly
+		//int temp =3; // Unable to take proper xpath of Expiry date calender field due to UI issue. once the issue has fixed we should change the xpath accodingly
 		for(int i=0; i<Noofadults;i++)
 		{
 //			System.out.println("The i value is "+ i);
 			String value = Firstname.get(i).getAttribute("value");
 			if(value.isEmpty() || value == null)
 			{
-			SendKeyy(Firstname.get(i), getdataxlsheet(sheetnum, rownumber, 0));
+		   SendKeyy(Firstname.get(i), getdataxlsheet(sheetnum, rownumber, 0));
 			SendKeyy(Lastname.get(i), getdataxlsheet(sheetnum, rownumber, 1));
 			SendKeyy(PassportNo.get(i), getdataxlsheet(sheetnum, rownumber, 2));
 			SendKeyy(Nationality.get(i), getdataxlsheet(sheetnum, rownumber, 3));
-			Thread.sleep(2000);
+			Thread.sleep(500);
 			Down();
 			Enter();
 			SendKeyy(Placeofissues.get(i), getdataxlsheet(sheetnum, rownumber, 4));
-			Thread.sleep(2000);
+			Thread.sleep(500);
 			Down();
 			Enter();
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			javascriptclick(DateofBirthCalenders.get(i));
 			WebElement year = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
-			Selectdropdownbyindex(year, i);
+			Selectdropdownbyindex(year, 70);
 			WebElement month = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
 			Selectdropdownbyindex(month, i);
 			WebElement SelectDate = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
@@ -123,35 +123,45 @@ public class PriceSummaryPage extends BaseClass {
 			Thread.sleep(1000);
 			javascriptclick(DateofIssueCalenders.get(i));
 			WebElement year1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
-			Selectdropdownbyindex(year1, 30);
+			Selectdropdownbyindex(year1, 90);
 			WebElement month1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
 			Selectdropdownbyindex(month1, i);
 			WebElement SelectDate1 = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
 			javascriptclick(SelectDate1);
-			Thread.sleep(1000);
-			javascriptclick(DateofExpiryCalenders.get(i));
 			Thread.sleep(500);
 			javascriptclick(DateofExpiryCalenders.get(i));
-//			WebElement ExpiryDate = driver.findElement(By.xpath("(//span[contains(@class,'default-calendar') and contains(@class,'calendar')])["+temp+"]"));
-//			javascriptclick(ExpiryDate);
-			dateselect("50");
+			Thread.sleep(500);
+			WebElement year3 = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+			Selectdropdownbyindex(year3, 20);
+			WebElement month3 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+			Selectdropdownbyindex(month3, i);
+			WebElement SelectDate3 = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
+			javascriptclick(SelectDate3);
 			Thread.sleep(1000);
 			SendKeyy(Address.get(i), getdataxlsheet(sheetnum, rownumber, 5));
 			SendKeyy(Pincodes.get(i), getdataxlsheet(sheetnum, rownumber, 6));
 			Selectdropdownbyvisibletext(Genders.get(i), getdataxlsheet(sheetnum, rownumber, 7));
 			Thread.sleep(1000);
 			Clicks(Submitbtn.get(i));
-			WebElement OK = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'OK')]")));
+			WebDriverWait w1 = new WebDriverWait(driver, 2);
+			WebElement OK = w1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'OK')]")));
 			Thread.sleep(2000);
 			Clicks(OK);
 			Clicks(ProceedtoPay);
-			temp = temp +3;
+			//temp = temp +3;
 			rownumber++;
 			}
 			else
 			{
-				//System.out.println("Details are already given");
+				try
+				{
+				WebElement Yes = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@value='Yes'])[3]")));
+				Clicks(Yes);
 				Clicks(ProceedtoPay);
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
 			}
 		}
 		try
@@ -161,17 +171,10 @@ public class PriceSummaryPage extends BaseClass {
 			Clicks(ProceedtoPay);
 		}
 		catch (Exception e) {
-			try
-			{
 			Clicks(ProceedtoPay);
-			}
-			catch (Exception ee) {
-				System.out.println("Nothing");
-			}
 		}
 	}
-	
-	
+
 	public void pricesummaryDomesticbyCU()
 	{
 		implicitwait();
@@ -187,8 +190,8 @@ public class PriceSummaryPage extends BaseClass {
 		catch (Exception e) {
 		}
 	}
-	
-	
+
+
 	public void pricesummaryInternataionalCU() throws Throwable
 	{
 		implicitwait();
@@ -209,7 +212,7 @@ public class PriceSummaryPage extends BaseClass {
 		List<WebElement> Pincodes = driver.findElements(By.xpath("//input[@placeholder='Pincode']"));
 		List<WebElement> Genders = driver.findElements(By.xpath("//select[contains(@id,'gender')]"));
 		List<WebElement> Submitbtn = driver.findElements(By.xpath("//a[@title='Submit']"));
-		
+
 		int sheetnum = 1;
 		int rownumber = 15;
 		int temp =3; // Unable to take proper xpath of Expiry date calender field due to UI issue. once the issue has fixed we should change the xpath accodingly
@@ -218,60 +221,60 @@ public class PriceSummaryPage extends BaseClass {
 			String value = Firstname.get(i).getAttribute("value");
 			if(value.isEmpty() || value == null)
 			{
-			SendKeyy(Firstname.get(i), getdataxlsheet(sheetnum, rownumber, 0));
-			SendKeyy(Lastname.get(i), getdataxlsheet(sheetnum, rownumber, 1));
-			SendKeyy(PassportNo.get(i), getdataxlsheet(sheetnum, rownumber, 2));
-			SendKeyy(Nationality.get(i), getdataxlsheet(sheetnum, rownumber, 3));
-			Thread.sleep(2000);
-			Down();
-			Enter();
-			SendKeyy(Placeofissues.get(i), getdataxlsheet(sheetnum, rownumber, 4));
-			Thread.sleep(2000);
-			Down();
-			Enter();
-			Thread.sleep(1000);
-			javascriptclick(DateofBirthCalenders.get(i));
-			WebElement year = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
-			Selectdropdownbyindex(year, i);
-			WebElement month = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
-			Selectdropdownbyindex(month, i);
-			WebElement SelectDate = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
-			javascriptclick(SelectDate);
-			Thread.sleep(1000);
-			javascriptclick(DateofIssueCalenders.get(i));
-			WebElement year1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
-			Selectdropdownbyindex(year1, 30);
-			WebElement month1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
-			Selectdropdownbyindex(month1, i);
-			WebElement SelectDate1 = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
-			javascriptclick(SelectDate1);
-			Thread.sleep(1000);
-			javascriptclick(DateofExpiryCalenders.get(i));
-			Thread.sleep(500);
-			javascriptclick(DateofExpiryCalenders.get(i));
-//			WebElement ExpiryDate = driver.findElement(By.xpath("(//span[contains(@class,'default-calendar') and contains(@class,'calendar')])["+temp+"]"));
-//			javascriptclick(ExpiryDate);
-			dateselect("50");
-			Thread.sleep(1000);
-			SendKeyy(Address.get(i), getdataxlsheet(sheetnum, rownumber, 5));
-			SendKeyy(Pincodes.get(i), getdataxlsheet(sheetnum, rownumber, 6));
-			Selectdropdownbyvisibletext(Genders.get(i), getdataxlsheet(sheetnum, rownumber, 7));
-			Thread.sleep(1000);
-			Clicks(Submitbtn.get(i));
-			WebElement OK = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'OK')]")));
-			Thread.sleep(2000);
-			Clicks(OK);
-			Clicks(SendforApproval);
-			temp = temp +3;
-			rownumber++;
+				SendKeyy(Firstname.get(i), getdataxlsheet(sheetnum, rownumber, 0));
+				SendKeyy(Lastname.get(i), getdataxlsheet(sheetnum, rownumber, 1));
+				SendKeyy(PassportNo.get(i), getdataxlsheet(sheetnum, rownumber, 2));
+				SendKeyy(Nationality.get(i), getdataxlsheet(sheetnum, rownumber, 3));
+				Thread.sleep(2000);
+				Down();
+				Enter();
+				SendKeyy(Placeofissues.get(i), getdataxlsheet(sheetnum, rownumber, 4));
+				Thread.sleep(2000);
+				Down();
+				Enter();
+				Thread.sleep(1000);
+				javascriptclick(DateofBirthCalenders.get(i));
+				WebElement year = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+				Selectdropdownbyindex(year, i);
+				WebElement month = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+				Selectdropdownbyindex(month, i);
+				WebElement SelectDate = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
+				javascriptclick(SelectDate);
+				Thread.sleep(1000);
+				javascriptclick(DateofIssueCalenders.get(i));
+				WebElement year1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
+				Selectdropdownbyindex(year1, 30);
+				WebElement month1 = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
+				Selectdropdownbyindex(month1, i);
+				WebElement SelectDate1 = driver.findElement(By.xpath("(//a[@class='ui-state-default'])[1]"));
+				javascriptclick(SelectDate1);
+				Thread.sleep(1000);
+				javascriptclick(DateofExpiryCalenders.get(i));
+				Thread.sleep(500);
+				javascriptclick(DateofExpiryCalenders.get(i));
+				//			WebElement ExpiryDate = driver.findElement(By.xpath("(//span[contains(@class,'default-calendar') and contains(@class,'calendar')])["+temp+"]"));
+				//			javascriptclick(ExpiryDate);
+				dateselect("50");
+				Thread.sleep(1000);
+				SendKeyy(Address.get(i), getdataxlsheet(sheetnum, rownumber, 5));
+				SendKeyy(Pincodes.get(i), getdataxlsheet(sheetnum, rownumber, 6));
+				Selectdropdownbyvisibletext(Genders.get(i), getdataxlsheet(sheetnum, rownumber, 7));
+				Thread.sleep(1000);
+				Clicks(Submitbtn.get(i));
+				WebElement OK = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'OK')]")));
+				Thread.sleep(2000);
+				Clicks(OK);
+				Clicks(SendforApproval);
+				temp = temp +3;
+				rownumber++;
 			}
 			else
 			{
 				System.out.println("Details are already given");
 			}
 		}
-		
-		
+
+
 		try
 		{
 			WebElement Yes = w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@value='Yes'])[4]")));
@@ -280,7 +283,7 @@ public class PriceSummaryPage extends BaseClass {
 		catch (Exception e) {
 			try
 			{
-			Clicks(SendforApproval);
+				Clicks(SendforApproval);
 			}
 			catch (Exception ee) {
 				System.out.println("Nothing");
@@ -288,8 +291,8 @@ public class PriceSummaryPage extends BaseClass {
 		}
 
 	}
-	
-	
+
+
 	public void Approve()
 	{
 		implicitwait();
@@ -298,8 +301,8 @@ public class PriceSummaryPage extends BaseClass {
 		WebElement Yes = driver.findElement(By.xpath("(//input[@value='Yes'])[2]"));
 		Clicks(Yes);
 	}
-	
-	
+
+
 	public void Combinationpayment()
 	{
 		implicitwait();
@@ -308,13 +311,13 @@ public class PriceSummaryPage extends BaseClass {
 		Clicks(ProceedtoPay);
 		try
 		{
-		Thread.sleep(1000);
-		Clicks(Yesbtn);	
+			Thread.sleep(1000);
+			Clicks(Yesbtn);	
 		}
 		catch (Exception e) {
 		}
 	}
-	
-	
+
+
 
 }

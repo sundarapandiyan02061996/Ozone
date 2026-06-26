@@ -103,7 +103,8 @@ public class FiltersandFlightSelectPage extends BaseClass {
 		Thread.sleep(2000);
 		try
 		{
-			WebElement Airlines = driver.findElement(By.xpath("//span[contains(@title,'"+getdataxlsheet(0, 2, 9)+"')]"));
+			WebElement Airlines =  driver.findElement(By.xpath("//span[contains(@title,'"+getdataxlsheet(0, 2, 9)+"')]"));
+			System.out.println(Airlines);
 			javascriptclick(Airlines);
 		}
 		catch (Exception e) {
@@ -112,6 +113,7 @@ public class FiltersandFlightSelectPage extends BaseClass {
 		try
 		{
 			WebElement SelectStop = driver.findElement(By.xpath("//li[contains(@class,'cls-filter-li')]//span[contains(text(),'"+getdataxlsheet(0, 2, 10)+"')]"));
+			System.out.println(SelectStop);
 			javascriptclick(SelectStop);
 		}
 		catch (Exception e) {

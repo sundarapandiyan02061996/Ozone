@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="org.CancellationPolicy.AirInternationalRTAllpassengerCancellarion">
+      <class name="org.GeneralScenarios.TC_05_InternationalOnewaybyCA">
         <methods>
           <include name="Aftertest"/>
-          <include name="AirRTInternationalbooking"/>
+          <include name="AirOWInternationalbooking"/>
           <include name="beforetest"/>
         </methods>
-      </class> <!-- org.CancellationPolicy.AirInternationalRTAllpassengerCancellarion -->
+      </class> <!-- org.GeneralScenarios.TC_05_InternationalOnewaybyCA -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
