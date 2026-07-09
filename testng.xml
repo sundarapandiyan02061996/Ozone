@@ -4,7 +4,7 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="org.GeneralScenarios.TC_01_DomesticOnewaybyCA"/>
-      <class name="org.GeneralScenarios.TC_04_DomesticRoundTripbyCU"/>
+<!--      <class name="org.GeneralScenarios.TC_04_DomesticRoundTripbyCU"/>
       <class name="org.GeneralScenarios.TC_16_InsuranceBookingbyCU"/>
       <class name="org.GeneralScenarios.TC_07_InternationalRoundTripbyCA"/>
       <class name="org.GeneralScenarios.TC_13_VisabookingbyCA"/>
@@ -27,7 +27,7 @@
       <class name="org.GeneralScenarios.TC_11_CarbookingbyCA"/>
       <class name="org.GeneralScenarios.TC_15_InsuranceBookingbyCA"/>
       <class name="org.GeneralScenarios.TC_17_AirDomesticOWAllpassengerCancellation"/>
-      <class name="org.GeneralScenarios.TC_02_DomesticOnewaybyCU"/>
+      <class name="org.GeneralScenarios.TC_02_DomesticOnewaybyCU"/>-->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -103,7 +103,7 @@ public class BookingQueuePage extends BaseClass {
 	@FindBy(xpath="(//button[contains(text(),'Proceed')])[1]")
 	WebElement Proceedbtn;
 
-	@FindBy(xpath="(//span[contains(text(),'×')])[1]")
+	@FindBy(xpath="(//span[contains(text(),'Ã—')])[1]")
 	WebElement Closebtn;
 
 	@FindBy(xpath="(//span[contains(text(),'Log Out')])")

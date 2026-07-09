@@ -34,7 +34,7 @@ public class TC_01_DomesticOnewaybyCA extends BaseClass {
 		    	  System.out.println("Screenshot saved: " + screenshotPath);
 
 		    } else if (result.getStatus() == ITestResult.SUCCESS) {
-		    	//driver.quit();
+		    	driver.quit();
 		}
 		
 	}
