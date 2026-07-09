@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class TC_01_DomesticOnewaybyCA extends BaseClass {
 	
 	@BeforeMethod
-	private static void beforetest() throws Throwable
+	public static void beforetest() throws Throwable
 	{
 		LaunchBrowser();
 		Maximize();	
@@ -26,7 +26,7 @@ public class TC_01_DomesticOnewaybyCA extends BaseClass {
 	
 	
 	@AfterMethod
-	private static void Aftertest(ITestResult result) throws Throwable
+	public static void Aftertest(ITestResult result) throws Throwable
 	{
 		 if (result.getStatus() == ITestResult.FAILURE) {
 		    	String testName = result.getName();
