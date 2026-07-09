@@ -2,8 +2,32 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test thread-count="5" name="Test">
-    <packages>
-      <package name="org.GeneralScenarios"/>
-    </packages>
+    <classes>
+      <class name="org.GeneralScenarios.TC_01_DomesticOnewaybyCA"/>
+      <class name="org.GeneralScenarios.TC_04_DomesticRoundTripbyCU"/>
+      <class name="org.GeneralScenarios.TC_16_InsuranceBookingbyCU"/>
+      <class name="org.GeneralScenarios.TC_07_InternationalRoundTripbyCA"/>
+      <class name="org.GeneralScenarios.TC_13_VisabookingbyCA"/>
+      <class name="org.GeneralScenarios.TC_23_CorporateUserCreation"/>
+      <class name="org.GeneralScenarios.TC_18_AirDomesticOWPartialpassengerCancellation"/>
+      <class name="org.GeneralScenarios.TC_21_CarCancellation"/>
+      <class name="org.GeneralScenarios.TC_25_CreateCorporateAndMap"/>
+      <class name="org.GeneralScenarios.TC_03_DomesticRoundTripbyCA"/>
+      <class name="org.GeneralScenarios.TC_24_NonUserCreation"/>
+      <class name="org.GeneralScenarios.TC_19_AirDomesticRTSegmentCancellation"/>
+      <class name="org.GeneralScenarios.TC_14_VisabookingbyCU"/>
+      <class name="org.GeneralScenarios.TC_06_InternationalOnewaybyCU"/>
+      <class name="org.GeneralScenarios.TC_08_InternationalRoundTripCU"/>
+      <class name="org.GeneralScenarios.TC_10_HotelbookingbyCU"/>
+      <class name="org.GeneralScenarios.TC_22_CorporateAdminUserCreation"/>
+      <class name="org.GeneralScenarios.TC_05_InternationalOnewaybyCA"/>
+      <class name="org.GeneralScenarios.TC_09_HotelbookingbyCAuser"/>
+      <class name="org.GeneralScenarios.TC_20_AirDomesticRTCrosspaxCancellation"/>
+      <class name="org.GeneralScenarios.TC_12_CarbookingbyCU"/>
+      <class name="org.GeneralScenarios.TC_11_CarbookingbyCA"/>
+      <class name="org.GeneralScenarios.TC_15_InsuranceBookingbyCA"/>
+      <class name="org.GeneralScenarios.TC_17_AirDomesticOWAllpassengerCancellation"/>
+      <class name="org.GeneralScenarios.TC_02_DomesticOnewaybyCU"/>
+    </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
