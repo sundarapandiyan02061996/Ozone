@@ -73,6 +73,8 @@ public class TC_01_DomesticOnewaybyCA extends BaseClass {
 		BookingQueuePage B = new BookingQueuePage();
 		B.FilterRequest(getdata2xlsheet(0, 1, 2));
 		B.logout();
+		
+		
 	}
 
 }
